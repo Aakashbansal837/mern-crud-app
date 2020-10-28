@@ -6,15 +6,15 @@ const UserModel = require("../models/User");
 
 router.route("/").get((req, res) => {
   console.log("requset came ?");
-  let data = ["abc", "asd"];
-  console.log("response sent");
-  res.json(data).status(200);
-  //   UserModel.find().then((err, users) => {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //     }
-  //   });
+
+  UserModel.find().then((err, users) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("response sent");
+      res.json(users).status(200);
+    }
+  });
 });
 
 module.exports = router;

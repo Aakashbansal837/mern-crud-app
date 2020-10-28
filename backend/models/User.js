@@ -6,4 +6,6 @@ let User = new Schema({
   lastname: { type: String, required: true },
 });
 
-mongoose.model("User", User);
+const UserModal = mongoose.model("User", User);
+
+module.exports = UserModal;
