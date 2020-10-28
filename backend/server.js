@@ -7,6 +7,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const UserRouter = require("./routes/user");
 
+// for local mongo db
+// const db = 'mongodb://127.0.0.1:27017/Mern-app'
+
+// for remote db
 const db =
   "mongodb+srv://aakash:aa@12346@cluster0-fwwzy.mongodb.net/test?retryWrites=true";
 mongoose
