@@ -1,31 +1,32 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const app = express();
+const port = 4000;
+
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const UserRouter = require("./routes/user");
 
-const app = express();
-const PORT = 4000;
-
-// enter uri of your mongo server;
-
-// for local use this
-// const mongoURL = "mongodb://127.0.0.1:27017/CRUD-app";
-
-// for mongo atlas server use this.
-const MongoURI =
+const db =
   "mongodb+srv://aakash:aa@12346@cluster0-fwwzy.mongodb.net/test?retryWrites=true";
-
-app.use(bodyParser.json);
-app.use(cors());
-
 mongoose
-  .connect(MongoURI, { useNewUrlParser: true, useCreateIndex: true })
-  .then(() => console.log("connected to mongo server !!"))
+  .connect(db, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  }) // Adding new mongo url parser
+  .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
+
+app.use(cors());
+app.use(bodyParser.json());
 
 app.use("/user", UserRouter);
 
-app.listen(PORT, () => {
-  console.log("server running at PORT :::" + PORT);
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });
