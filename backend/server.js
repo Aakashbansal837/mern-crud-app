@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const userRouter = require("./routes/user");
+const UserRouter = require("./routes/user");
 
 const app = express();
 const PORT = 4000;
@@ -24,8 +24,8 @@ mongoose
   .then(() => console.log("connected to mongo server !!"))
   .catch((err) => console.log(err));
 
+app.use("/user", UserRouter);
+
 app.listen(PORT, () => {
   console.log("server running at PORT :::" + PORT);
 });
-
-app.use("/user", userRouter);

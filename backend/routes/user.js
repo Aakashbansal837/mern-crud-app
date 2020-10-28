@@ -1,5 +1,17 @@
-const userRouter = express.Router();
+const express = require("express");
+const router = express.Router();
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
-userRouter.get("/", () => {
-  return "all working fine";
+router.use(cors());
+router.use(bodyParser.json());
+
+router.get("/", (req, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    res.json({ message: "all working fine", success: true });
+  }
 });
+
+module.exports = router;
