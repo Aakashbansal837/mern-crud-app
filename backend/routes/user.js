@@ -7,14 +7,12 @@ const UserModel = require("../models/User");
 router.route("/").get((req, res) => {
   console.log("requset came ?");
 
-  UserModel.find().then((err, users) => {
-    if (err) {
-      console.log(err);
-    } else {
+  UserModel.find()
+    .then((users) => {
       console.log("response sent");
       res.json(users).status(200);
-    }
-  });
+    })
+    .catch((err) => console.log("error : ", err));
 });
 
 module.exports = router;

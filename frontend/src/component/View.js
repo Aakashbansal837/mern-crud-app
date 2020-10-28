@@ -13,7 +13,7 @@ class View extends React.Component {
       .get(serverURL + "/user/")
       .then((response) => {
         console.log("data :", response);
-        // this.setState({ data: response });
+        this.setState({ data: response.data });
       })
       .catch(function (error) {
         console.log(error);
@@ -24,7 +24,11 @@ class View extends React.Component {
       <div>
         <Header />
         this is View option
-        {this.state.data[0]}
+        <ul>
+          {this.state.data.map((dt) => {
+            return <li>{dt.name}</li>;
+          })}
+        </ul>
       </div>
     );
   }
